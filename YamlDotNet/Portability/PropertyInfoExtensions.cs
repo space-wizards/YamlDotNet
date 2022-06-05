@@ -27,7 +27,7 @@ namespace YamlDotNet
     {
         public static object? ReadValue(this PropertyInfo property, object target)
         {
-            return property.GetGetMethod().Invoke(target, null);
+            return property.GetGetMethod()!.Invoke(target, null);
         }
     }
 }

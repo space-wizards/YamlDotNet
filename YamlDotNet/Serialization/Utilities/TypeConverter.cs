@@ -191,7 +191,7 @@ namespace YamlDotNet.Serialization.Utilities
                             }
                             catch (TargetInvocationException ex)
                             {
-                                throw ex.Unwrap();
+                                throw ex.Unwrap() ?? ex;
                             }
                         }
                     }
@@ -219,7 +219,7 @@ namespace YamlDotNet.Serialization.Utilities
                 }
                 catch (TargetInvocationException ex)
                 {
-                    throw ex.Unwrap();
+                    throw ex.Unwrap() ?? ex;
                 }
             }
 

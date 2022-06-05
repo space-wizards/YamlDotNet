@@ -34,7 +34,7 @@ namespace YamlDotNet
             this.provider = provider;
         }
 
-        public override object GetFormat(Type formatType)
+        public override object? GetFormat(Type? formatType)
         {
             return provider.GetFormat(formatType);
         }

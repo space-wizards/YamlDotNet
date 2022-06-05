@@ -19,16 +19,4 @@
     <LangVersion>latest</LangVersion>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-  <ItemGroup>
-    <Compile Remove="Portability\**" />
-    <EmbeddedResource Remove="Portability\**" />
-    <None Remove="Portability\**" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Portability\CultureInfoAdapter.cs" />
-    <Compile Include="Portability\ReflectionExtensions.cs" />
-    <Compile Include="Portability\PropertyInfoExtensions.cs" />
-    <Compile Include="Portability\StandardRegexOptions.cs" />
-  </ItemGroup>
-  
 </Project>

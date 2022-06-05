@@ -182,8 +182,8 @@ namespace YamlDotNet
                 .Where(c => c.IsPublic && !c.IsStatic);
         }
 
-        private static readonly Func<PropertyInfo, bool> IsInstance = (PropertyInfo property) => !property.GetMethod.IsStatic;
-        private static readonly Func<PropertyInfo, bool> IsInstancePublic = (PropertyInfo property) => IsInstance(property) && property.GetMethod.IsPublic;
+        private static readonly Func<PropertyInfo, bool> IsInstance = (PropertyInfo property) => property.GetMethod?.IsStatic == false;
+        private static readonly Func<PropertyInfo, bool> IsInstancePublic = (PropertyInfo property) => IsInstance(property) && property.GetMethod!.IsPublic;
 
         public static IEnumerable<PropertyInfo> GetProperties(this Type type, bool includeNonPublic)
         {
@@ -240,14 +240,14 @@ namespace YamlDotNet
         public static MethodInfo? GetGetMethod(this PropertyInfo property, bool nonPublic)
         {
             var getter = property.GetMethod;
-            if (!nonPublic && !getter.IsPublic)
+            if (!nonPublic && getter != null && !getter.IsPublic)
             {
                 getter = null;
             }
             return getter;
         }
 
-        public static MethodInfo GetSetMethod(this PropertyInfo property)
+        public static MethodInfo? GetSetMethod(this PropertyInfo property)
         {
             return property.SetMethod;
         }
@@ -257,7 +257,7 @@ namespace YamlDotNet
             return type.GetTypeInfo().ImplementedInterfaces;
         }
 
-        public static Exception Unwrap(this TargetInvocationException ex)
+        public static Exception? Unwrap(this TargetInvocationException ex)
         {
             return ex.InnerException;
         }
